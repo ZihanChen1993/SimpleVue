@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./simplVue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{msg}}</h1>
+      <h2>{{person.name}} -- {{person.age}}</h2>
+      <h3>{{person.fav}}</h3>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+      <div v-text="msg"></div>
+      <div v-text="person.age"></div>
+      <div v-text="person.girlfriend.name"></div>
+      <div v-html="htmlStr"></div>
+      <input type="text" v-model="person.name" />
+      <button v-on:click="handleClick">v-on</button>
+      <button @click="handleClick">@click</button>
+      <div v-bind:Asrc = 'src'>v-bind</div>
+    </div>
+
+    <script>
+      let vm = new MyVue({
+        el: '#app',
+        data: {
+          person: {
+            name: '小陈',
+            age: 27,
+            fav:'姑娘',
+            girlfriend: {
+              name:'小李',
+              age: 26
+            }
+          },
+          msg : '好好学习，天天向上',
+          htmlStr: '<h3>html可以显示吗</h3>',
+          src: '我是src'
+        },
+        methods: {
+          handleClick() {
+            this.$data.person.name = '大陈';
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
