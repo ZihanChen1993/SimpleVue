@@ -69,6 +69,9 @@ const compileUtil = {
   },
   bind(node, expr, vm, eventName) {
     const value = this.getVal(expr, vm);
+    new Watcher(vm, expr, (newVal) => {
+      node.setAttribute(eventName, newVal);
+    })
     node.setAttribute(eventName, value);
     node.removeAttribute('v-bind:' + eventName);
   },
